@@ -1,6 +1,5 @@
 <template>
-  <div class="split-bg" ref="split"
-  :style="`background-image: url(${bg})`">
+  <div class="split-bg" :style="`background-image: url(${bg})`">
     <slot />
   </div>
 </template>
