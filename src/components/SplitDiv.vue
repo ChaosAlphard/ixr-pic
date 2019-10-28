@@ -1,5 +1,6 @@
 <template>
-  <div class="split-bg" :style="`background-image: url(${bg})`">
+  <div class="split-bg" ref="split"
+  :style="`background-image: url(${bg})`">
     <slot />
   </div>
 </template>
@@ -9,7 +10,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class SplitDiv extends Vue {
-  @Prop({ default: '' }) readonly bg?: string
+  @Prop({ default: '' }) private readonly bg?: string
 }
 </script>
 
@@ -28,6 +29,5 @@ export default class SplitDiv extends Vue {
   font-size: 36px;
   color: #FFF;
   text-shadow: 0 0 10px #000;
-
 }
 </style>
