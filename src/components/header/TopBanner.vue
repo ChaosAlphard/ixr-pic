@@ -1,5 +1,5 @@
 <template>
-  <div class='banner'>
+  <div class='banner' ref="banner">
     <div class="banner-left">
       LOGO HERE
     </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import UserInfo from './UserInfo.vue'
 
 @Component({
@@ -20,18 +20,32 @@ import UserInfo from './UserInfo.vue'
   }
 })
 export default class TopBanner extends Vue {
+  @Prop({ default: '' })
+  private readonly bg!: string
+
   private user: any = {}
 
   private getUserInfo() {
-    fetch('http://jsonplaceholder.typicode.com/users/1')
-      .then(res => res.json())
-      .then(data => {
-        this.user = data
+    this.axios.get('http://jsonplaceholder.typicode.com/users/1')
+      .then(res => {
+        this.user = res.data
       })
+  }
+
+  private getPseudoElement(el: HTMLElement, type: string): CSSStyleDeclaration {
+    return window.getComputedStyle(el, type)
+  }
+
+  private setPseudoElementBackground(pe: CSSStyleDeclaration, bg: string): void {
+    pe.backgroundImage = bg
   }
 
   private mounted() {
     this.getUserInfo()
+    this.setPseudoElementBackground(
+      this.getPseudoElement(this.$refs.banner as HTMLElement, '::before'),
+      this.bg
+    )
   }
 }
 </script>
@@ -47,12 +61,26 @@ export default class TopBanner extends Vue {
   width: 100%;
   height: 42px;
   box-shadow: 0 0 6px 0 #000;
-  background: {
-    image: url("https://www.w3school.com.cn/i/eg_tulip.jpg");
-    repeat: no-repeat;
-    attachment: fixed;
-    size: cover;
-    position: top center;
+  // background: {
+  //   image: url("https://i.loli.net/2019/10/29/UFci9ls4ehPtgXn.jpg");
+  //   repeat: no-repeat;
+  //   attachment: fixed;
+  //   size: cover;
+  //   position: top center;
+  // }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background: {
+      repeat: no-repeat;
+      attachment: fixed;
+      size: cover;
+      position: top center;
+    }
+    filter: blur(3px);
+    z-index: -1;
   }
 
   .banner-right {
