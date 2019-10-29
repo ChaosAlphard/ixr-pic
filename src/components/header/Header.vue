@@ -14,7 +14,7 @@ import TopBanner from './TopBanner.vue'
   }
 })
 export default class Header extends Vue {
-  private user: any = {}
+
 }
 </script>
 
