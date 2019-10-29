@@ -1,103 +1,68 @@
 <template>
-<div class='banner'>
-  <li>li1</li>
-  <li>li2</li>
-  <Button block>123123</Button>
-  <Button block sm>123123</Button>
-  <Button block md>123123</Button>
-  <Button lg ribbin>123123</Button>
-
-  <div class='avatar-content'>
-    <div class='avatar-content-title'>
-      <img class='avatar' alt="avatar"
-      :src="user.avatar" />
+  <div class='banner'>
+    <div class="banner-left">
+      LOGO HERE
     </div>
 
-    <div class='avatar-content-detail'>
-      <UserInfo v-if="user.id != null" :usr="user" />
+    <div class="banner-right">
+      <UserInfo v-if="!!user.id" :user="user" class="usr-info" />
     </div>
   </div>
-
-</div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Button from '../MTBtn.vue'
+import UserInfo from './UserInfo.vue'
 
 @Component({
   components: {
-    Button
+    UserInfo
   }
 })
-export default class Home extends Vue {
+export default class TopBanner extends Vue {
   private user: any = {}
+
+  private getUserInfo() {
+    fetch('http://jsonplaceholder.typicode.com/users/1')
+      .then(res => res.json())
+      .then(data => {
+        this.user = data
+      })
+  }
+
+  private mounted() {
+    this.getUserInfo()
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/themes.scss';
+
 .banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   width: 100%;
   height: 42px;
   box-shadow: 0 0 6px 0 #000;
-  background: url("https://www.w3school.com.cn/i/eg_tulip.jpg") no-repeat top center fixed / cover;
+  background: {
+    image: url("https://www.w3school.com.cn/i/eg_tulip.jpg");
+    repeat: no-repeat;
+    attachment: fixed;
+    size: cover;
+    position: top center;
+  }
 
-  .avatar-content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    width: 360px;
-    position: absolute;
-    top: 10px;
-    right:40px;
-
-    .avatar-content-title {
-      /* 2px skew */
-      display: flex;
-      z-index: 10;
-
-      .avatar {
-        width: 64px;
-        height: 64px;
-        border-radius: 32px;
-        object-fit: cover;
-        overflow: hidden;
-        box-shadow: 0 0 6px 0 #000;
-        transition: transform .1s;
-        cursor: pointer;
-        &:hover {
-          transform: scale(1.2);
-        }
-      }
-    }
-
-    .avatar-content-detail {
-      width: 100%;
-      height: 240px;
-      background-color: #FFF;
-      padding-top: 40px;
-      box-sizing: border-box;
-      opacity: 0;
-      transform: translateY(-400px);
-      transition: all .5s, opacity .5s cubic-bezier(0, 1, 0.8, 1);
-      border-radius: 8px;
-      overflow: hidden;
-      /* for innser content */
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-    }
+  .banner-right {
+    width: 400px;
+    padding-top: 10px;
+    align-self: stretch;
+    flex-shrink: 0;
+    /* flex */
+    @include flex(center, unset);
   }
 }
 
-.avatar-content-title:hover + .avatar-content-detail, .avatar-content-detail:hover  {
-  transform: translateY(-32px);
-  opacity: 1;
-  box-shadow: 0 2px 2px 0px #0008;
-  transition: all .5s, opacity .5s ease-in;
-}
 </style>
