@@ -16,7 +16,7 @@ import TopBanner from './TopBanner.vue'
     TopBanner
   }
 })
-export default class Header extends Vue {
+export default class VHeader extends Vue {
   bg = 'https://i.loli.net/2019/10/29/UFci9ls4ehPtgXn.jpg'
 }
 </script>
