@@ -1,5 +1,11 @@
 <template>
-  <button class="mt-btn" ref="btn">
+  <button ref="btn" class="mt-btn" :class="{
+    block: block !== false,
+    border: border !== false,
+    sm: sm !== false,
+    md: md !== false,
+    lg: lg !== false
+  }">
     <slot />
   </button>
 </template>
@@ -9,12 +15,15 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class MTBtn extends Vue {
-  @Prop({default: false}) private readonly border!: boolean
-  @Prop({default: false}) private readonly block!: boolean
+  @Prop({ default: false }) private readonly border!: boolean
+  @Prop({ default: false }) private readonly block!: boolean
+  @Prop({ default: false }) private readonly sm!: boolean
+  @Prop({ default: false }) private readonly md!: boolean
+  @Prop({ default: false }) private readonly lg!: boolean
 
   private clickWave(btn: HTMLButtonElement) {
     btn.onclick = (ev) => {
-      const e:any = window.event || ev
+      const e: MouseEvent = ev || window.event
 
       const x = e.clientX - btn.getBoundingClientRect().left
       const y = e.clientY - btn.getBoundingClientRect().top
@@ -22,14 +31,18 @@ export default class MTBtn extends Vue {
       const w = btn.offsetWidth
 
       const el = document.createElement('div')
-      el.classList.add('wave')
+      el.classList.add('custom-mtbtn-style-wave')
+      if(this.border !== false) {
+        el.classList.add('custom-mtbtn-style-wave-border')
+      }
+
       el.style.left = x+'px'
       el.style.top = y+'px'
       el.style.width = `${w*2}px`
       el.style.height = `${w*2}px`
       el.style.marginTop = `-${w}px`
       el.style.marginLeft = `-${w}px`
-      el.style.boxShadow = `0 0 ${w/2}px ${w/2}px #FFF inset`
+
       btn.appendChild(el)
 
       setTimeout(() => {
@@ -45,29 +58,56 @@ export default class MTBtn extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/themes.scss';
+
 .mt-btn {
-  width: 180px;
-  height: 40px;
   margin: 0;
-  padding: 10px;
-  border: 0;
-  background: #FAA;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  color: $textColor;
+  background-color: $primaryColor;
   position: relative;
   overflow: hidden;
 }
+.block {
+  display: block;
+  width: 100%;
+}
+.border {
+  box-sizing: border-box;
+  border: 1px solid $primaryColor;
+  color: $primaryColor;
+  background-color: #FFFFFF;
+}
+.sm {
+  font-size: 10px;
+}
+.md {
+  font-size: 18px;
+}
+.lg {
+  font-size: 20px;
+}
 </style>
 
-<style>
-.wave{
+<style lang="scss">
+@import '~@/scss/themes.scss';
+
+.custom-mtbtn-style-wave {
   position: absolute;
   border-radius: 50%;
-  background-color: #FFFFFFAA;
+  background-color: #FFFFFF;
   opacity: 1;
   transform: scale(0);
-  animation: wave .5s linear;
+  animation: custom-mtbtn-animation-wave .5s ease-out;
+}
+.custom-mtbtn-style-wave-border {
+  background-color: $primaryColor;
 }
 
-@keyframes wave {
+@keyframes custom-mtbtn-animation-wave {
   100%{
     opacity: 0;
     transform: scale(1);

@@ -1,0 +1,9 @@
+$primaryColor: #778899;
+$textColor: #000000;
+
+@mixin flex($justify: center, $align: stretch, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
