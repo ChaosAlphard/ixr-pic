@@ -1,5 +1,7 @@
 <template>
-  <div class='banner' ref="banner">
+  <div class='banner'>
+    <div class='banner-blur' ref='bannerBlur'></div>
+
     <div class="banner-left">
       LOGO HERE
     </div>
@@ -32,20 +34,13 @@ export default class TopBanner extends Vue {
       })
   }
 
-  private getPseudoElement(el: HTMLElement, type: string): CSSStyleDeclaration {
-    return window.getComputedStyle(el, type)
-  }
-
-  private setPseudoElementBackground(pe: CSSStyleDeclaration, bg: string): void {
-    pe.backgroundImage = bg
+  private setBackground(el: HTMLElement, bg: string): void {
+    el.style.backgroundImage = `url(${bg})`
   }
 
   private mounted() {
     this.getUserInfo()
-    this.setPseudoElementBackground(
-      this.getPseudoElement(this.$refs.banner as HTMLElement, '::before'),
-      this.bg
-    )
+    this.setBackground(this.$refs.bannerBlur as HTMLElement, this.bg)
   }
 }
 </script>
@@ -68,18 +63,17 @@ export default class TopBanner extends Vue {
   //   size: cover;
   //   position: top center;
   // }
-  &::before {
-    content: '';
+  .banner-blur {
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
     background: {
       repeat: no-repeat;
-      attachment: fixed;
+      // attachment: fixed;
       size: cover;
       position: top center;
     }
-    filter: blur(3px);
+    filter: blur(5px);
     z-index: -1;
   }
 

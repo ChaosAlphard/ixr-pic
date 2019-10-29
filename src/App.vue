@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import VHeader from '@/components/header/TopBanner.vue'
+import VHeader from '@/components/header/VHeader.vue'
 
 @Component({
   components: {

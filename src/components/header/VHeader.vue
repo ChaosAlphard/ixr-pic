@@ -1,8 +1,7 @@
 <template>
   <header class='header' :style="{
-    backgroundImage: bg
+    backgroundImage: `url(${bg})`
   }">
-    <div>123123</div>
     <TopBanner :bg="bg" />
   </header>
 </template>
@@ -17,7 +16,7 @@ import TopBanner from './TopBanner.vue'
   }
 })
 export default class VHeader extends Vue {
-  bg = 'https://i.loli.net/2019/10/29/UFci9ls4ehPtgXn.jpg'
+  bg = 'https://i.loli.net/2019/10/29/lxMC7V3OkUFY8WN.jpg'
 }
 </script>
 
@@ -31,6 +30,6 @@ export default class VHeader extends Vue {
     position: top center;
     size: cover;
   }
-  
+
 }
 </style>
