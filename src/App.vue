@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <Header />
+    <VHeader />
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Header from '@/components/header/TopBanner.vue'
+import VHeader from '@/components/header/TopBanner.vue'
 
 @Component({
   components: {
-    Header
+    VHeader
   }
 })
 export default class App extends Vue {
