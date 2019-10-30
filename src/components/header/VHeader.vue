@@ -3,7 +3,7 @@
     backgroundImage: `url(${bg})`
   }">
     <div class="placeholder" ref="placeholder"></div>
-    <TopBanner :bg="'https://www.w3school.com.cn/i/eg_tulip.jpg'" class="top-banner" ref="bannComp" />
+    <TopBanner :bg="bg" :fixed="bannerFixed" class="top-banner" ref="bannComp" />
   </header>
 </template>
 
@@ -18,8 +18,9 @@ import { throttle } from '@/plugins/commonFunction.ts'
   }
 })
 export default class VHeader extends Vue {
-  // https://www.w3school.com.cn/i/eg_tulip.jpg
-  bg = 'https://www.w3school.com.cn/i/eg_tulip.jpg'
+  private bg: string = 'http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg'
+
+  public bannerFixed = false
 
   private getRanPic() {
     this.axios.get('/api/ranpic')
@@ -28,8 +29,40 @@ export default class VHeader extends Vue {
       })
   }
 
+  private watchScroll(): void {
+    const holder = this.$refs.placeholder as HTMLDivElement
+    const boundBottom = holder.getBoundingClientRect().bottom
+    if(boundBottom < 0) {
+      this.bannerFixed = true
+    } else {
+      this.bannerFixed = false
+    }
+  }
+
+  private obServerScroll(el: HTMLElement): void {
+    new IntersectionObserver(ioes => {
+      for(const ioe of ioes) {
+        if(ioe.intersectionRatio > 0) {
+          this.bannerFixed = false
+        } else {
+          this.bannerFixed = true
+        }
+      }
+    }).observe(el)
+
+  }
+
   private mounted() {
     // this.getRanPic()
+
+    this.obServerScroll(this.$refs.placeholder as HTMLElement)
+
+    // 兼容写法
+    // window.onscroll = throttle(
+    //   this.watchScroll, 15
+    // ) as (
+    //   this: GlobalEventHandlers, ev: Event
+    // ) => any
   }
 
 }
@@ -42,6 +75,7 @@ export default class VHeader extends Vue {
   @include flex(flex-start, center, column);
   position: relative;
   width: 100%;
+  min-width: 640px;
   height: 320px;
   background: {
     repeat: no-repeat;
