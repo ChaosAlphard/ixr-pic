@@ -39,7 +39,7 @@ export default class UserInfo extends Vue {
     transition: transform .1s;
     /* default avatar image */
     background: {
-      image: url('https://www.w3school.com.cn/i/eg_tulip.jpg');
+      image: url('https://www.w3school.com.cn/i/eg_cute.gif');
       size: cover;
       position: center center;
       repeat: no-repeat;

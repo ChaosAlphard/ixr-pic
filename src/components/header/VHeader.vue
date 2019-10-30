@@ -2,13 +2,15 @@
   <header class='header' :style="{
     backgroundImage: `url(${bg})`
   }">
-    <TopBanner :bg="bg" />
+    <div class="placeholder" ref="placeholder"></div>
+    <TopBanner :bg="'https://www.w3school.com.cn/i/eg_tulip.jpg'" class="top-banner" ref="bannComp" />
   </header>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import TopBanner from './TopBanner.vue'
+import { throttle } from '@/plugins/commonFunction.ts'
 
 @Component({
   components: {
@@ -16,19 +18,44 @@ import TopBanner from './TopBanner.vue'
   }
 })
 export default class VHeader extends Vue {
-  bg = 'https://i.loli.net/2019/10/29/lxMC7V3OkUFY8WN.jpg'
+  // https://www.w3school.com.cn/i/eg_tulip.jpg
+  bg = ''
+
+  private getRanPic() {
+    this.axios.get('/api/ranpic')
+      .then(res => {
+        this.bg = res.data
+      })
+  }
+
+  private mounted() {
+    // this.getRanPic()
+  }
+
 }
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/themes.scss';
+
 .header {
+  @include flex(flex-start, center, column);
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 320px;
   background: {
     repeat: no-repeat;
-    position: top center;
+    position: 50% 0;
     size: cover;
+  }
+
+  .placeholder {
+    width: 100%;
+    height: 278px
+  }
+
+  .top-banner {
+    // z-index: 10;
   }
 
 }

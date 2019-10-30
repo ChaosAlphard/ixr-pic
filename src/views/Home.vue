@@ -14,6 +14,6 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 div {
-  height: 100vh;
+  height: 200vh;
 }
 </style>
