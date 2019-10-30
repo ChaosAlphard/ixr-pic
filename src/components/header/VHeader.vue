@@ -18,7 +18,10 @@ import { throttle } from '@/plugins/commonFunction.ts'
   }
 })
 export default class VHeader extends Vue {
-  private bg: string = 'http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg'
+
+  // http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg
+  // https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg
+  private bg: string = 'https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg'
 
   public bannerFixed = false
 
@@ -29,9 +32,8 @@ export default class VHeader extends Vue {
       })
   }
 
-  private watchScroll(): void {
-    const holder = this.$refs.placeholder as HTMLDivElement
-    const boundBottom = holder.getBoundingClientRect().bottom
+  private watchScroll(el: HTMLElement): void {
+    const boundBottom = el.getBoundingClientRect().bottom
     if(boundBottom < 0) {
       this.bannerFixed = true
     } else {
@@ -55,14 +57,15 @@ export default class VHeader extends Vue {
   private mounted() {
     // this.getRanPic()
 
-    this.obServerScroll(this.$refs.placeholder as HTMLElement)
+    // this.obServerScroll(this.$refs.placeholder as HTMLElement)
 
     // 兼容写法
-    // window.onscroll = throttle(
-    //   this.watchScroll, 15
-    // ) as (
-    //   this: GlobalEventHandlers, ev: Event
-    // ) => any
+    window.onscroll = throttle(
+      this.watchScroll, 15,
+      this.$refs.placeholder as HTMLElement
+    ) as (
+      this: GlobalEventHandlers, ev: Event
+    ) => any
   }
 
 }
