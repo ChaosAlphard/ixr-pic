@@ -3,7 +3,7 @@
     backgroundImage: `url(${bg})`
   }">
     <div class="placeholder" ref="placeholder"></div>
-    <TopBanner :bg="bg" :fixed="bannerFixed" class="top-banner" ref="bannComp" />
+    <TopBanner :bg="bg" :fixed="bannerFixed" class="top-banner" />
   </header>
 </template>
 

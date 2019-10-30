@@ -1,9 +1,6 @@
 <template>
-  <div class='banner banner-bg-style' ref="banner"
-  :class="{'fixed-to-top': fixed}"
-  :style="{
-    backgroundImage: `url(${bg})`
-  }">
+  <div class='banner banner-bg-style' :class="{'fixed-to-top': fixed}"
+  :style="{backgroundImage: `url(${bg})`}">
     <div class='banner-blur banner-bg-style' :style="{
       backgroundImage: `url(${bg})`
     }"></div>
