@@ -22,7 +22,9 @@ module.exports = {
     'no-unused-expressions': 0,
     'no-labels': 0,
     'no-multiple-empty-lines': 0,
-    'quotes': 1
+    'quotes': 1,
+    'indent': 1,
+    'padded-blocks': 0
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
