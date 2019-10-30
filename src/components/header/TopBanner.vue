@@ -1,5 +1,7 @@
 <template>
-  <div class='banner banner-bg-style' :style="{
+  <div class='banner banner-bg-style' ref="banner"
+  :class="{'fixed-to-top': fixed}"
+  :style="{
     backgroundImage: `url(${bg})`
   }">
     <div class='banner-blur banner-bg-style' :style="{
@@ -28,6 +30,9 @@ import UserInfo from './UserInfo.vue'
 export default class TopBanner extends Vue {
   @Prop({ default: '' })
   private readonly bg!: string
+
+  @Prop({ default: false })
+  private readonly fixed!: boolean
 
   user: any = {}
 
@@ -81,4 +86,11 @@ export default class TopBanner extends Vue {
   }
 }
 
+</style>
+
+<style>
+.fixed-to-top {
+  position: fixed !important;
+  top: 0;
+}
 </style>
