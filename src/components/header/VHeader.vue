@@ -19,7 +19,7 @@ import { throttle } from '@/plugins/commonFunction.ts'
 })
 export default class VHeader extends Vue {
   // https://www.w3school.com.cn/i/eg_tulip.jpg
-  bg = ''
+  bg = 'https://www.w3school.com.cn/i/eg_tulip.jpg'
 
   private getRanPic() {
     this.axios.get('/api/ranpic')
@@ -45,7 +45,7 @@ export default class VHeader extends Vue {
   height: 320px;
   background: {
     repeat: no-repeat;
-    position: 50% 0;
+    position: center top;
     size: cover;
   }
 
@@ -55,7 +55,7 @@ export default class VHeader extends Vue {
   }
 
   .top-banner {
-    // z-index: 10;
+    z-index: 10;
   }
 
 }

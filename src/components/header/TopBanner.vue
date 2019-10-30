@@ -1,20 +1,18 @@
 <template>
-  <div class='banner banner-bg-style' ref="banner" :style="{
+  <div class='banner banner-bg-style' :style="{
     backgroundImage: `url(${bg})`
   }">
-    <div class='banner-blur banner-bg-style' ref='bannerBlur' :style="{
+    <div class='banner-blur banner-bg-style' :style="{
       backgroundImage: `url(${bg})`
     }"></div>
 
-    <!-- <div class="banner-content"> -->
-      <div class="banner-left">
-        LOGO HERE
-      </div>
+    <div class="banner-left">
+      LOGO HERE
+    </div>
 
-      <div class="banner-right">
-        <UserInfo v-if="!!user.id" :user="user" class="usr-info" />
-      </div>
-    <!-- </div> -->
+    <div class="banner-right">
+      <UserInfo v-if="!!user.id" :user="user" class="usr-info" />
+    </div>
   </div>
 </template>
 
@@ -51,8 +49,8 @@ export default class TopBanner extends Vue {
 
 .banner-bg-style {
   background: {
-    repeat: no-repeat;
-    position: 50% 278px;
+    // repeat: no-repeat;
+    position: center -278px;
     size: cover;
   }
 }
@@ -68,13 +66,9 @@ export default class TopBanner extends Vue {
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
-    filter: blur(1px);
+    filter: blur(3px);
     overflow: hidden;
     z-index: -1;
-  }
-
-  .banner-content {
-
   }
 
   .banner-right {
