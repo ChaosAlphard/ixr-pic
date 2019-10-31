@@ -51,8 +51,16 @@ export default class MTBtn extends Vue {
     }
   }
 
+  private unlistenClick(btn: HTMLButtonElement) {
+    btn.onclick = null
+  }
+
   private mounted() {
     this.clickWave(this.$refs.btn as HTMLButtonElement)
+  }
+
+  private beforeDestroy() {
+    this.unlistenClick(this.$refs.btn as HTMLButtonElement)
   }
 }
 </script>
@@ -61,15 +69,20 @@ export default class MTBtn extends Vue {
 @import '~@/scss/themes.scss';
 
 .mt-btn {
+  position: relative;
   margin: 0;
   padding: 10px 20px;
-  border: none;
   outline: none;
+  border: none;
   border-radius: 6px;
   color: $textColor;
   background-color: $primaryColor;
-  position: relative;
+  cursor: pointer;
   overflow: hidden;
+}
+.mt-btn[disabled] {
+  background-color: #AAAAAA;
+  color: #FFFFFF;
 }
 .block {
   display: block;
