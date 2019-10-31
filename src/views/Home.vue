@@ -3,7 +3,7 @@
     <Split :bg="'http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg'">
       <span>Today Recommend</span>
     </Split>
-    <div class="section">Home</div>
+    <div class="section"></div>
 
     <Split>
       <span>Landscape</span>
@@ -29,7 +29,15 @@ import Split from '@/components/SplitDiv.vue'
   }
 })
 export default class Home extends Vue {
+  private headerPicData = {
+    recommend: '',
+    anime: '',
+    landscape: ''
+  }
 
+  private setPictureUrl(data: object) {
+    const picData = this.headerPicData
+  }
 }
 </script>
 
@@ -38,7 +46,11 @@ export default class Home extends Vue {
   position: relative;
 }
 .section {
+  position: relative;
   box-shadow: 0 0 25px 5px #FAA inset;
   height: 200px;
+}
+.section > div {
+  width: 80%;
 }
 </style>
