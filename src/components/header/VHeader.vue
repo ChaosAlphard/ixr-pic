@@ -18,10 +18,9 @@ import { throttle } from '@/plugins/commonFunction.ts'
   }
 })
 export default class VHeader extends Vue {
-
   // http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg
   // https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg
-  private bg: string = 'https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg'
+  private bg: string = ''
 
   public bannerFixed = false
 
@@ -57,6 +56,7 @@ export default class VHeader extends Vue {
   private mounted() {
     // this.getRanPic()
 
+    // IntersectionObserver兼容性不好(2019.10.30)
     // this.obServerScroll(this.$refs.placeholder as HTMLElement)
 
     // 兼容写法
@@ -72,7 +72,7 @@ export default class VHeader extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/themes.scss';
+@import '~@/scss/mixin.scss';
 
 .header {
   @include flex(flex-start, center, column);

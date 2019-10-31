@@ -19,7 +19,7 @@ export default class UserInfo extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/themes.scss';
+@import '~@/scss/mixin.scss';
 
 .user-content {
   @include flex(flex-start, center, column);

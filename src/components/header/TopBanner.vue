@@ -47,7 +47,7 @@ export default class TopBanner extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/themes.scss';
+@import '~@/scss/mixin.scss';
 
 .banner-bg-style {
   background: {
