@@ -14,7 +14,10 @@ export default class SplitDiv extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/mixin.scss';
+
 .split-bg {
+  @include flex(center, center);
   width: 100%;
   height: 280px;
   overflow: hidden;
@@ -24,7 +27,6 @@ export default class SplitDiv extends Vue {
     position: center center;
     repeat: no-repeat;
   };
-  line-height: 280px;
   font-size: 36px;
   color: #FFF;
   text-shadow: 0 0 10px #000;
