@@ -31,6 +31,13 @@
     <div class="section">
       <div class="section-content"></div>
     </div>
+
+    <Split>
+      <span>NearBy Upload</span>
+    </Split>
+    <div class="section">
+      <div class="section-content"></div>
+    </div>
   </div>
 </template>
 
