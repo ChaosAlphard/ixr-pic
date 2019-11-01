@@ -6,7 +6,7 @@
     }"></div>
 
     <div class="banner-left">
-      LOGO HERE
+      <VNav />
     </div>
 
     <div class="banner-right">
@@ -18,6 +18,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import UserInfo from './UserInfo.vue'
+import VNav from '@/components/nav/VNav.vue'
 
 @Component({
   components: {

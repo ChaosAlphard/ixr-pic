@@ -70,16 +70,18 @@ export default class Home extends Vue {
 }
 .section {
   @include flex(center);
-  position: relative;
   height: 200px;
 }
 .section-content {
   width: 72%;
   max-width: 1600px;
   min-width: 600px;
+  height: 100%;
   box-shadow: 0 0 25px 5px #FAA inset;
   display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
 }
 </style>
