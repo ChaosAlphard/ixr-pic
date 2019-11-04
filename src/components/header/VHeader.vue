@@ -3,7 +3,7 @@
     backgroundImage: `url(${bg})`
   }">
     <div class="placeholder" ref="placeholder"></div>
-    <TopBanner :bg="bg" :fixed="bannerFixed" class="top-banner" />
+    <TopBanner :bg="bg" :fixed="bannerFixed" />
   </header>
 </template>
 
@@ -89,10 +89,6 @@ export default class VHeader extends Vue {
   .placeholder {
     width: 100%;
     height: 278px
-  }
-
-  .top-banner {
-    z-index: 10;
   }
 
 }
