@@ -23,13 +23,13 @@ export default class UserInfo extends Vue {
 
 .user-content {
   @include flex(flex-start, center, column);
-  width: 64px;
+  width: 360px;
   height: 64px;
   position: relative;
 
   .avatar-img {
-    width: 100%;
-    height: 100%;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 6px 0 #000;
@@ -52,7 +52,7 @@ export default class UserInfo extends Vue {
   .user-detail {
     position: absolute;
     top: 32px;
-    left: -148px;
+    left: 0;
     width: 360px;
     height: 240px;
     padding-top: 40px;

@@ -19,7 +19,7 @@ import { throttle } from '@/plugins/commonFunction.ts'
 export default class VHeader extends Vue {
   // http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg
   // https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg
-  private bg: string = 'https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg'
+  private bg: string = 'https://i.loli.net/2019/10/29/UFci9ls4ehPtgXn.jpg'
 
   public bannerFixed = false
 
@@ -54,7 +54,7 @@ export default class VHeader extends Vue {
 .header {
   position: relative;
   width: 100%;
-  // min-width: 640px;
+  min-width: 720px;
   height: 320px;
   padding-top: 278px;
   box-sizing: border-box;

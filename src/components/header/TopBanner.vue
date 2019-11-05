@@ -9,10 +9,12 @@
     <!-- banner内容 -->
     <div class="banner-content">
       <!-- <div class="banner-left"> -->
+        <!-- 导航 -->
       <VNav class="nav" />
       <!-- </div> -->
 
       <!-- <div class="banner-right"> -->
+        <!-- 用户信息 -->
       <UserInfo class="userinfo" v-if="!!user.id" :user="user" />
       <!-- </div> -->
     </div>
@@ -61,10 +63,9 @@ export default class TopBanner extends Vue {
 }
 
 .banner {
-  // @include flex(center, center);
   position: relative;
   width: 100%;
-  min-width: 960px;
+  min-width: 720px;
   height: 42px;
   box-shadow: 0 0 6px 0 #000;
   z-index: 10;
@@ -73,8 +74,8 @@ export default class TopBanner extends Vue {
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
+    min-width: 720px;
     filter: blur(3px);
-    overflow: hidden;
     z-index: -1;
   }
 
@@ -82,20 +83,17 @@ export default class TopBanner extends Vue {
     @include flex(space-between, center);
     position: relative;
     width: 72%;
+    height: 42px;
+    max-width: 1600px;
+    min-width: 600px;
     margin: {
       left: auto;
       right: auto;
     }
 
-    .nav {
-      height: 42px;
-      width: 120px;
-    }
-
     .userinfo {
-      // width: 400px;
       margin-top: 10px;
-      align-self: stretch;
+      align-self: flex-start;
       flex-shrink: 0;
     }
   }
