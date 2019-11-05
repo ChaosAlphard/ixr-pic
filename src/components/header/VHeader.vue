@@ -1,9 +1,8 @@
 <template>
-  <header class='header' :style="{
-    backgroundImage: `url(${bg})`
-  }">
-    <div class="placeholder" ref="placeholder"></div>
-    <TopBanner :bg="bg" :fixed="bannerFixed" />
+  <header class='header' ref="header"
+  :style="{backgroundImage: `url(${bg})`}">
+    <!-- header底部的banner条 -->
+    <TopBanner :bg="bg" :class="{'fixed-to-top': bannerFixed}" />
   </header>
 </template>
 
@@ -20,11 +19,11 @@ import { throttle } from '@/plugins/commonFunction.ts'
 export default class VHeader extends Vue {
   // http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg
   // https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg
-  private bg: string = ''
+  private bg: string = 'https://i.loli.net/2019/10/30/4ZGiYqvVPgfEa2B.jpg'
 
   public bannerFixed = false
 
-  private getRanPic() {
+  private getRanPic(): void {
     this.axios.get('/api/ranpic')
       .then(res => {
         this.bg = res.data
@@ -33,36 +32,16 @@ export default class VHeader extends Vue {
 
   private watchScroll(el: HTMLElement): void {
     const boundBottom = el.getBoundingClientRect().bottom
-    if(boundBottom < 0) {
-      this.bannerFixed = true
-    } else {
-      this.bannerFixed = false
-    }
-  }
-
-  private obServerScroll(el: HTMLElement): void {
-    new IntersectionObserver(ioes => {
-      for(const ioe of ioes) {
-        if(ioe.intersectionRatio > 0) {
-          this.bannerFixed = false
-        } else {
-          this.bannerFixed = true
-        }
-      }
-    }).observe(el)
-
+    this.bannerFixed = (boundBottom < 42)
   }
 
   private mounted() {
     // this.getRanPic()
 
-    // IntersectionObserver兼容性不好(2019.10.30)
-    // this.obServerScroll(this.$refs.placeholder as HTMLElement)
-
-    // 兼容写法
+    // 监听滚动, 设置banner定位
     window.onscroll = throttle(
       this.watchScroll, 15,
-      this.$refs.placeholder as HTMLElement
+      this.$refs.header as HTMLElement
     ) as (
       this: GlobalEventHandlers, ev: Event
     ) => any
@@ -72,24 +51,25 @@ export default class VHeader extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/mixin.scss';
-
 .header {
-  @include flex(flex-start, center, column);
   position: relative;
   width: 100%;
-  min-width: 640px;
+  // min-width: 640px;
   height: 320px;
+  padding-top: 278px;
+  box-sizing: border-box;
   background: {
     repeat: no-repeat;
     position: center top;
     size: cover;
   }
+}
 
-  .placeholder {
-    width: 100%;
-    height: 278px
-  }
+</style>
 
+<style>
+.fixed-to-top {
+  position: fixed !important;
+  top: 0;
 }
 </style>

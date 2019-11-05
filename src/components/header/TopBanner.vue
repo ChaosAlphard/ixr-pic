@@ -1,18 +1,20 @@
 <template>
-  <div class='banner banner-bg-style' :class="{'fixed-to-top': fixed}"
+  <div class='banner banner-bg-style'
   :style="{backgroundImage: `url(${bg})`}">
+    <!-- banner的模糊背景 -->
     <div class='banner-blur banner-bg-style' :style="{
       backgroundImage: `url(${bg})`
     }"></div>
 
+    <!-- banner内容 -->
     <div class="banner-content">
-      <div class="banner-left">
-        <VNav class="banner-left" />
-      </div>
+      <!-- <div class="banner-left"> -->
+      <VNav class="nav" />
+      <!-- </div> -->
 
-      <div class="banner-right">
-        <UserInfo v-if="!!user.id" :user="user" class="usr-info" />
-      </div>
+      <!-- <div class="banner-right"> -->
+      <UserInfo class="userinfo" v-if="!!user.id" :user="user" />
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -24,15 +26,13 @@ import VNav from '@/components/nav/VNav.vue'
 
 @Component({
   components: {
-    UserInfo
+    UserInfo,
+    VNav
   }
 })
 export default class TopBanner extends Vue {
   @Prop({ default: '' })
   private readonly bg!: string
-
-  @Prop({ default: false })
-  private readonly fixed!: boolean
 
   user: any = {}
 
@@ -62,8 +62,9 @@ export default class TopBanner extends Vue {
 
 .banner {
   // @include flex(center, center);
-  // position: relative;
+  position: relative;
   width: 100%;
+  min-width: 960px;
   height: 42px;
   box-shadow: 0 0 6px 0 #000;
   z-index: 10;
@@ -86,22 +87,18 @@ export default class TopBanner extends Vue {
       right: auto;
     }
 
-    .banner-right {
-      width: 400px;
-      padding-top: 10px;
+    .nav {
+      height: 42px;
+      width: 120px;
+    }
+
+    .userinfo {
+      // width: 400px;
+      margin-top: 10px;
       align-self: stretch;
       flex-shrink: 0;
-      /* flex */
-      @include flex(center, unset);
     }
   }
 }
 
-</style>
-
-<style>
-.fixed-to-top {
-  position: fixed !important;
-  top: 0;
-}
 </style>
