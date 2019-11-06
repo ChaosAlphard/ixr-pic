@@ -1,44 +1,50 @@
 <template>
-  <div class="home">
-    <Split :bg="'http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg'">
-      <span>Today Recommend</span>
-    </Split>
-    <div class="section">
-      <div class="section-content">
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
-        <div>10</div>
+  <ul class="home">
+    <!-- 推荐 -->
+    <li class="section-wrapper">
+      <Split :bg="'http://seopic.699pic.com/photo/50142/1253.jpg_wh1200.jpg'">
+        <span>Today Recommend</span>
+      </Split>
+      <div class="section">
+        <div class="section-content">
+          <div>10</div><div>10</div><div>10</div>
+          <div>10</div> <div>10</div><div>10</div>
+          <div>10</div><div>10</div><div>10</div>
+          <div>10</div>
+        </div>
       </div>
-    </div>
+    </li>
 
-    <Split>
-      <span>Landscape</span>
-    </Split>
-    <div class="section">
-      <div class="section-content"></div>
-    </div>
+    <!-- 景物 -->
+    <li class="section-wrapper">
+      <Split>
+        <span>Landscape</span>
+      </Split>
+      <div class="section">
+        <div class="section-content"></div>
+      </div>
+    </li>
 
-    <Split>
-      <span>Anime</span>
-    </Split>
-    <div class="section">
-      <div class="section-content"></div>
-    </div>
+    <!-- 插画 -->
+    <li class="section-wrapper">
+      <Split>
+        <span>Anime</span>
+      </Split>
+      <div class="section">
+        <div class="section-content"></div>
+      </div>
+    </li>
 
-    <Split>
-      <span>NearBy Upload</span>
-    </Split>
-    <div class="section">
-      <div class="section-content"></div>
-    </div>
-  </div>
+    <!-- 最近上传 -->
+    <li class="section-wrapper">
+      <Split>
+        <span>NearBy Upload</span>
+      </Split>
+      <div class="section">
+        <div class="section-content"></div>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
@@ -66,6 +72,7 @@ export default class Home extends Vue {
 @import '~@/scss/mixin.scss';
 
 .home {
+  @include flex(flex-start, stretch, column);
   position: relative;
 }
 .section {
