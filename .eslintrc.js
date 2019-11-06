@@ -16,6 +16,7 @@ module.exports = {
     'comma-spacing': 1,
     'no-trailing-spaces': 'warn',
     'keyword-spacing': 'off',
+    'key-spacing': 'off',
     'block-spacing': 0,
     'space-infix-ops': 0,
     'eol-last': 1,
