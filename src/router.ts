@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { Route } from 'vue-router'
 
 import Home from '@/views/Home.vue'
 
@@ -18,6 +18,17 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+    }, {
+      path: '/404',
+      name: 'notfound',
+      component: () => import('@/views/NotFound.vue')
+    }, {
+      path: '*',
+      redirect: { name: 'notfound' }
     }
-  ]
+  ],
+  linkActiveClass: 'nav-tab-active',
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { x: 0, y: 0 }
+  }
 })
