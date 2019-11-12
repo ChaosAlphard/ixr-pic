@@ -21,7 +21,7 @@
     </router-link>
 
     <router-link tag="li" class="nav-item"
-    :to="{name: 'about', params: {id:'1'}}">
+    :to="{name: 'home'}">
       <span>图集</span>
     </router-link>
 

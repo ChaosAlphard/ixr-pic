@@ -15,11 +15,11 @@ export default new Router({
       name: 'home',
       component: Home
     }, {
-      path: '/about/:id',
+      path: '/about',
       name: 'about',
       component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
     }, {
-      path: '/404',
+      path: '/err/404',
       name: 'notfound',
       component: () => import('@/views/NotFound.vue')
     }, {

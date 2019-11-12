@@ -8,15 +8,11 @@
 
     <!-- banner内容 -->
     <div class="banner-content">
-      <!-- <div class="banner-left"> -->
-        <!-- 导航 -->
+      <!-- 导航 -->
       <VNav class="nav" />
-      <!-- </div> -->
 
-      <!-- <div class="banner-right"> -->
-        <!-- 用户信息 -->
+      <!-- 用户信息 -->
       <UserInfo class="userinfo" v-if="!!user.id" :user="user" />
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -65,8 +61,6 @@ export default class TopBanner extends Vue {
 .banner {
   position: relative;
   width: 100%;
-  min-width: 720px;
-  height: 42px;
   box-shadow: 0 0 6px 0 #000;
   z-index: 10;
 
@@ -74,18 +68,12 @@ export default class TopBanner extends Vue {
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
-    min-width: 720px;
     filter: blur(3px);
     z-index: -1;
   }
 
   .banner-content {
-    @include flex(space-between, center);
     position: relative;
-    width: 72%;
-    height: 42px;
-    max-width: 1600px;
-    min-width: 600px;
     margin: {
       left: auto;
       right: auto;
@@ -95,6 +83,37 @@ export default class TopBanner extends Vue {
       margin-top: 10px;
       align-self: flex-start;
       flex-shrink: 0;
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  .banner {
+    min-width: 720px;
+    height: 42px;
+
+    .banner-blur {
+      min-width: 720px;
+    }
+
+    .banner-content {
+      @include flex(space-between, center);
+      width: 72%;
+      height: 42px;
+      // min-width: 600px;
+    }
+  }
+}
+
+@media (max-width: 719px) {
+  .banner {
+    .banner-content {
+      @include flex(flex-start, center, column);
+      height: 42px;
+    }
+
+    .nav {
+      height: 42px;
     }
   }
 }
