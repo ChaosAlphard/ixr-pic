@@ -10,14 +10,7 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component
 export default class About extends Vue {
 
-  private id = this.$route.path
-  private para = this.$route.params
-
   mounted() {
-    setTimeout(() => {
-      console.log(this.$route.path)
-      console.log(this.$route.params)
-    }, 1000)
   }
 }
 </script>
@@ -25,4 +18,8 @@ export default class About extends Vue {
 <style lang="scss" scoped>
 @import '~@/scss/mixin.scss';
 
+.about {
+  width: 100%;
+  height: 100vh;
+}
 </style>

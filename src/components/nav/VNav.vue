@@ -6,22 +6,22 @@
     </router-link>
 
     <router-link tag="li" class="nav-item"
-    :to="{name: 'home'}">
+    :to="{name: 'section', params: {section: 'anime'}}">
       <span>插画</span>
     </router-link>
 
     <router-link tag="li" class="nav-item"
-    :to="{name: 'home'}">
+    :to="{name: 'section', params: {section: 'game'}}">
       <span>游戏</span>
     </router-link>
 
     <router-link tag="li" class="nav-item"
-    :to="{name: 'home'}">
+    :to="{name: 'section', params: {section: 'landscape'}}">
       <span>景物</span>
     </router-link>
 
     <router-link tag="li" class="nav-item"
-    :to="{name: 'home'}">
+    :to="{name: 'section', params: {section: 'collection'}}">
       <span>图集</span>
     </router-link>
 

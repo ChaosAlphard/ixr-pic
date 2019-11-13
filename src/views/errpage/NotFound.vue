@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="err">
     <kbd>404</kbd>
   </div>
 </template>

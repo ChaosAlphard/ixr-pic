@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <kbd>404</kbd>
+    <kbd>footer</kbd>
   </footer>
 </template>
 
