@@ -67,9 +67,41 @@ export default class VHeader extends Vue {
 
 </style>
 
-<style>
+<style lang="scss">
+@import '~@/scss/mixin.scss';
+
 .fixed-to-top {
   position: fixed !important;
   top: 0;
+}
+
+@media (max-width: 719px) {
+  .fixed-to-top {
+    height: 84px !important;
+    background-position: center top !important;
+
+    .banner-blur {
+      background-position: center top !important;
+    }
+
+    .banner-content {
+      @include flex(
+        flex-start !important,
+        center !important,
+        column !important
+      );
+      width: 100% !important;
+      height: 100% !important;
+
+      .nav {
+        height: 42px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .userinfo {
+        align-self: center !important;
+      }
+    }
+  }
 }
 </style>

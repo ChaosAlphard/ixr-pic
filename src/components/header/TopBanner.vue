@@ -61,6 +61,8 @@ export default class TopBanner extends Vue {
 .banner {
   position: relative;
   width: 100%;
+  // min-width: 720px;
+  height: 42px;
   box-shadow: 0 0 6px 0 #000;
   z-index: 10;
 
@@ -73,49 +75,22 @@ export default class TopBanner extends Vue {
   }
 
   .banner-content {
+    @include flex(space-between, center);
     position: relative;
+    width: 72%;
+    // min-width: 600px;
+    height: 42px;
     margin: {
       left: auto;
       right: auto;
     }
 
     .userinfo {
-      margin-top: 10px;
       align-self: flex-start;
+      margin-top: 10px;
       flex-shrink: 0;
     }
   }
+
 }
-
-@media (min-width: 720px) {
-  .banner {
-    min-width: 720px;
-    height: 42px;
-
-    .banner-blur {
-      min-width: 720px;
-    }
-
-    .banner-content {
-      @include flex(space-between, center);
-      width: 72%;
-      height: 42px;
-      // min-width: 600px;
-    }
-  }
-}
-
-@media (max-width: 719px) {
-  .banner {
-    .banner-content {
-      @include flex(flex-start, center, column);
-      height: 42px;
-    }
-
-    .nav {
-      height: 42px;
-    }
-  }
-}
-
 </style>
