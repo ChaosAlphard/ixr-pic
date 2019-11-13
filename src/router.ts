@@ -21,7 +21,7 @@ export default new Router({
     }, {
       path: '/err/404',
       name: 'notfound',
-      component: () => import('@/views/NotFound.vue')
+      component: () => import('@/views/errpage/NotFound.vue')
     }, {
       path: '*',
       redirect: { name: 'notfound' }
